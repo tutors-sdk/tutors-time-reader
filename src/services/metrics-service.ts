@@ -2,7 +2,7 @@ import type { Course } from "tutors-reader-lib/src/course/course";
 import firebase from "firebase/app";
 import "firebase/database";
 import type { Lo, Student } from "tutors-reader-lib/src/course/lo";
-import type { DayMeasure, Metric, MetricDelete, MetricUpdate, User, UserMetric } from "tutors-reader-lib/src/types/metrics-types";
+import type { DayMeasure, Metric, MetricDelete, MetricUpdate, User, UserMetric } from "tutors-reader-lib/src/metrics/metrics-types";
 import { decrypt } from "tutors-reader-lib/src/utils/auth-utils";
 import type { Topic } from "tutors-reader-lib/src/course/topic";
 

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import type { StudentMetric } from "tutors-reader-lib/src/analytics/metrics-types";
+  import type { StudentMetric } from "tutors-reader-lib/src/metrics/metrics-types";
 
   export let student: StudentMetric;
 </script>

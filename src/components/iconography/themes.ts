@@ -1,8 +1,8 @@
-import { FluentIconLib } from "./support/fluent-icons";
+import { FluentIconLib } from "tutors-reader-lib/src/icons/fluent-icons";
 import { currentCourse } from "../../stores";
-import { HeroIconLib } from "./support/hero-icons";
-import { HalloweenIconLib } from "./support/halloween-icons";
-import type { IconType } from "tutors-reader-lib/src/types/icon-types";
+import { HeroIconLib } from "tutors-reader-lib/src/icons/hero-icons";
+import { HalloweenIconLib } from "tutors-reader-lib/src/icons/halloween-icons";
+import type { IconType } from "tutors-reader-lib/src/icons/icon-types";
 
 let StandardIconLib = FluentIconLib;
 

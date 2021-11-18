@@ -1,7 +1,7 @@
 <script lang="ts">
   import { cardTransition } from "../animations";
   import { currentUser } from "../../stores";
-  import type { User } from "tutors-reader-lib/src/types/metrics-types";
+  import type { User } from "tutors-reader-lib/src/metrics/metrics-types";
   import { getContext } from "svelte";
   let status = false;
   let user: User;
