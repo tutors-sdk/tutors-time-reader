@@ -6,9 +6,6 @@
   import { fly } from "svelte/transition";
   import ClockCard from "../cards/ClockCard.svelte";
   import LoggedinStudentCard from "../cards/LoggedinStudentCard.svelte";
-
-  let version = "4.2.4";
-
 </script>
 
 {#if $currentCourse}

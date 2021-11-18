@@ -1,7 +1,7 @@
 import type { Lo } from "tutors-reader-lib/src/course/lo";
 import { LabSheet } from "./lab-sheet";
 import { deepScheme } from "./heat-map-colours";
-import type { UserMetric } from "tutors-reader-lib/src/analytics/metrics-types";
+import type { UserMetric } from "tutors-reader-lib/src/metrics/metrics-types";
 
 export class LabCountSheet extends LabSheet {
   title = "Tutors Time";

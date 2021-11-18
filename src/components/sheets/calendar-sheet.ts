@@ -1,6 +1,6 @@
 import type { ICellRendererParams } from "ag-grid-community";
 import type { Calendar } from "tutors-reader-lib/src/course/lo";
-import type { UserMetric } from "tutors-reader-lib/src/analytics/metrics-types";
+import type { UserMetric } from "tutors-reader-lib/src/metrics/metrics-types";
 import { deepScheme } from "./heat-map-colours";
 import { formatDate } from "tutors-reader-lib/src/utils/auth-utils";
 

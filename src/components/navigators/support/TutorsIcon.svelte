@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Icon from "../../iconography/Icon.svelte";
   export let version = "4.4.3";
 </script>
 <div class="tooltip" data-tip="Tutors Reader {version}">

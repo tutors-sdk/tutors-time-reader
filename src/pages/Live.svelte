@@ -7,9 +7,6 @@
   import type { Lo } from "tutors-reader-lib/src/course/lo";
   import StudentCard from "../components/cards/StudentCard.svelte";
   import { querystring } from "svelte-spa-router";
-  import { MetricsService } from "../services/metrics-service";
-  import LoggedinStudentCard from "../components/cards/LoggedinStudentCard.svelte";
-  import ClockCard from "../components/cards/ClockCard.svelte";
 
   let students: StudentMetric[] = [];
   export let params: any = {};
