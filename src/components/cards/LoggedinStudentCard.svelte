@@ -13,17 +13,7 @@
     user = await $currentUser;
     status = user?.onlineStatus === "offline";
   });
-
-
 </script>
-
-<style>
-  .card {
-    max-width: 150px;
-    min-width: 100px;
-    height: auto
-  }
-</style>
 
 {#if user}
   <div transition:cardTransition class="tutorscard w-32 h-32 border-info">
