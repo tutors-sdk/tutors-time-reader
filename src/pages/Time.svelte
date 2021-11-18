@@ -25,10 +25,11 @@
   let id = "";
   async function getCourse(url) {
     id = $querystring;
-    const user = await metricsService.fetchUserById(id);
-    currentUser.set(user);
+
     course = await cache.fetchCourse(url);
     metricsService.setCourse(course);
+    const user = await metricsService.fetchUserById(id);
+    currentUser.set(user);
     // noinspection TypeScriptValidateTypes
     currentLo.set({ title: `Tutors Time`, type: "tutorsTime", parentLo: course.lo, img: course.lo.img });
     title = `Tutors Time`;
