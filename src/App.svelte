@@ -1,0 +1,61 @@
+<script lang="ts">
+  import "./tailwind.css";
+  import { onMount, setContext } from "svelte";
+  import Router from "svelte-spa-router";
+  import Blank from "./pages/support/Blank.svelte";
+  import Unauthorised from "./pages/support/Unauthorised.svelte";
+  import Time from "./pages/Time.svelte";
+  import Live from "./pages/Live.svelte";
+  import NotFound from "./pages/support/NotFound.svelte";
+  import MainNavigator from "./components/navigators/MainNavigator.svelte";
+  import Logout from "./pages/support/Logout.svelte";
+  import { CourseService } from "./services/course-service";
+  import { setIconLib, themeIcons } from "./components/iconography/themes";
+  import { getKeys } from "./environment";
+  import firebase from "firebase";
+
+  setContext("cache", new CourseService());
+
+  let authenticating = false;
+  let bg = "bg-gray-50";
+
+  onMount(async () => {
+    applyInitialTheme();
+    if (getKeys().firebase.apiKey !== "XXX") {
+      if (!firebase.apps.length) firebase.initializeApp(getKeys().firebase);
+    }
+  });
+
+  let routes = {
+    "/": Blank,
+    "/unauthorised": Unauthorised,
+    "/authorize/": Blank,
+    "/logout": Logout,
+    "/time/*": Time,
+    "/live/*": Live,
+    "*": NotFound
+  };
+
+  const htmlTag = document.getElementsByTagName("html")[0];
+  let currentTheme = window.localStorage.getItem("site-theme");
+  if (currentTheme === "dracula") {
+    currentTheme = null;
+  }
+  function applyInitialTheme() {
+    if (currentTheme != null) {
+      htmlTag.setAttribute("data-theme", currentTheme);
+      setIconLib(themeIcons[currentTheme]);
+    } else if (currentTheme === null) {
+      window.localStorage.setItem("site-theme", "tutors");
+      window.localStorage.setItem("theme", "tutors");
+      htmlTag.setAttribute("data-theme", "tutors");
+      setIconLib(themeIcons["tutors"]);
+    }
+  }
+
+</script>
+
+<div id="top" class="tutors-container">
+  <MainNavigator />
+  <Router {routes} />
+</div>

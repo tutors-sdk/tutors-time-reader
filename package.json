@@ -1,0 +1,43 @@
+{
+  "name": "tutors-time-reader",
+  "version": "4.4.3",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tutors-sdk/tutors-next.git"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@iconify/svelte": "^2.0.0",
+    "@iconify/types": "^1.0.10",
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
+    "@tailwindcss/line-clamp": "^0.2.2",
+    "@tailwindcss/typography": "^0.4.1",
+    "ag-grid-community": "^26.1.0",
+    "ag-grid-enterprise": "^26.1.0",
+    "autoprefixer": "^10.3.7",
+    "crypto-es": "^1.2.7",
+    "daisyui": "^1.16.0",
+    "file-saver": "^2.0.5",
+    "firebase": "^8.9.0",
+    "path-browserify": "^1.0.1",
+    "postcss": "^8.3.11",
+    "svelte": "^3.44.0",
+    "svelte-loading-spinners": "^0.1.7",
+    "svelte-preprocess": "^4.9.8",
+    "svelte-spa-router": "^3.2.0",
+    "svelte-tabs": "^1.1.0",
+    "svelte-transitions-fade-scale": "^1.0.0",
+    "tailwindcss": "^2.2.17",
+    "typescript": "^4.4.4",
+    "vite": "^2.6.11"
+  },
+  "dependencies": {
+    "tutors-reader-lib": "0.0.7"
+  }
+}
