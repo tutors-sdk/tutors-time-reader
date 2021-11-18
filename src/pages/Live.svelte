@@ -14,9 +14,8 @@
   let students: StudentMetric[] = [];
   export let params: any = {};
   const cache: CourseService = getContext("cache");
-
+  const metricsService = getContext("metrics");
   let course = cache.course;
-  let metricsService: MetricsService;
   let title = "";
   let status = false;
 
@@ -24,7 +23,7 @@
     let id = $querystring;
     live.set(true);
     course = await cache.fetchCourse(params.wild);
-    metricsService = new MetricsService(course);
+    metricsService.setCourse(course);
     // noinspection TypeScriptValidateTypes
     currentLo.set({
       title: `Tutors Live: ${course.lo.title}`,

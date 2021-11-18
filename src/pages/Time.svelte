@@ -16,6 +16,7 @@
   let instructorMode = false;
   let course: Course = null;
   const cache: CourseService = getContext("cache");
+  const metricsService = getContext("metrics");
   let title = "";
   let pinBuffer = "";
   let ignorePin = "";
@@ -25,6 +26,7 @@
   async function getCourse(url) {
     id = $querystring;
     course = await cache.fetchCourse(url);
+    metricsService.setCourse(course);
     // noinspection TypeScriptValidateTypes
     currentLo.set({ title: `Tutors Time`, type: "tutorsTime", parentLo: course.lo, img: course.lo.img });
     title = `Tutors Time`;

@@ -16,7 +16,7 @@ export class MetricsService {
   metricDelete: MetricDelete = null;
   canUpdate = false;
 
-  constructor(course: Course) {
+  setCourse(course: Course) {
     this.course = course;
     this.courseBase = course.url.substr(0, course.url.indexOf("."));
     this.allLabs = this.course.walls.get("lab");

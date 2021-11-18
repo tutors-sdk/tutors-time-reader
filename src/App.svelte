@@ -15,8 +15,10 @@
   import firebase from "firebase";
   import LoggedinStudentCard from "./components/cards/LoggedinStudentCard.svelte";
   import ClockCard from "./components/cards/ClockCard.svelte";
+  import { MetricsService } from "./services/metrics-service";
 
   setContext("cache", new CourseService());
+  setContext("metrics", new MetricsService());
 
   let authenticating = false;
   let bg = "bg-gray-50";

@@ -14,10 +14,11 @@
   let timeSheet = new LabCountSheet();
 
   const cache: CourseService = getContext("cache");
-
+  const metricsService = getContext("metrics");
+  
   onMount(async () => {
     timeGrid = new Grid(time, { ...options });
-    const user = await cache.course.metricsService.fetchUserById(id);
+    const user = await metricsService.fetchUserById(id);
     const allLabs = cache.course.walls.get("lab");
     if (allLabs) {
       timeSheet.populateCols(allLabs);

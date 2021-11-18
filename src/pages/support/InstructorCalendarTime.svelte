@@ -12,13 +12,14 @@
   let calendarSheet = new CalendarSheet();
 
   const cache: CourseService = getContext("cache");
+  const metricsService = getContext("metrics");
 
   onMount(async () => {
     calendarGrid = new Grid(calendar, { ...options });
     const calendarData = cache.course.calendar;
-    let userMap = await cache.course.metricsService.fetchAllUsers();
+    let userMap = await metricsService.fetchAllUsers();
     if (cache.course.hasEnrollment()) {
-      userMap = cache.course.metricsService.filterUsers(userMap, cache.course.getStudents());
+      userMap = metricsService.filterUsers(userMap, cache.course.getStudents());
     }
     calendarSheet.populateCols(calendarData);
     for (const user of userMap.values()) {
