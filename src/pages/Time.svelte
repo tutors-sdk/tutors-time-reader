@@ -7,7 +7,7 @@
   import InstructorCalendarTime from "./support/InstructorCalendarTime.svelte";
   import type { Course } from "tutors-reader-lib/src/course/course";
   import type { CourseService } from "../services/course-service";
-  import { currentLo } from "../stores";
+  import { currentLo, currentUser } from "../stores";
   // @ts-ignore
   import { Tab, TabList, TabPanel, Tabs } from "svelte-tabs";
   import {querystring} from 'svelte-spa-router'
@@ -25,6 +25,8 @@
   let id = "";
   async function getCourse(url) {
     id = $querystring;
+    const user = await metricsService.fetchUserById(id);
+    currentUser.set(user);
     course = await cache.fetchCourse(url);
     metricsService.setCourse(course);
     // noinspection TypeScriptValidateTypes
