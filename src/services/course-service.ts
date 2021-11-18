@@ -2,7 +2,6 @@ import path from "path-browserify";
 import { courseUrl, currentCourse, week } from "../stores";
 import { replace } from "svelte-spa-router";
 import { Course } from "tutors-reader-lib/src/course/course";
-import { MetricsService } from "tutors-reader-lib/src/analytics/metrics-service";
 import { Lab } from "tutors-reader-lib/src/course/lab";
 import { lastSegment } from "tutors-reader-lib/src/utils/lo-utils";
 import { fromLocalStorage, isAuthenticated } from "tutors-reader-lib/src/utils/auth-utils";
@@ -25,9 +24,6 @@ export class CourseService {
         try {
           await this.course.fetchCourse();
           this.courses.set(url, this.course);
-          if (this.course.authLevel > 0) {
-            this.course.metricsService = new MetricsService(this.course);
-          }
         } catch (e) {
           this.courseUrl = "";
           this.course = null;

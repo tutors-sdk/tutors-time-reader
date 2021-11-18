@@ -10,8 +10,7 @@
   import { currentLo } from "../stores";
   // @ts-ignore
   import { Tab, TabList, TabPanel, Tabs } from "svelte-tabs";
-  import { getUserId } from "tutors-reader-lib/src/utils/auth-utils";
-  import {location, querystring} from 'svelte-spa-router'
+  import {querystring} from 'svelte-spa-router'
   export let params: any = {};
 
   let instructorMode = false;
@@ -21,12 +20,9 @@
   let pinBuffer = "";
   let ignorePin = "";
 
-  //const id = getUserId();
   window.addEventListener("keydown", keypressInput);
   let id = "";
   async function getCourse(url) {
-    console.log(params);
-    console.log($querystring);
     id = $querystring;
     course = await cache.fetchCourse(url);
     // noinspection TypeScriptValidateTypes

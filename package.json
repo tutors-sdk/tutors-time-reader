@@ -38,6 +38,6 @@
     "vite": "^2.6.11"
   },
   "dependencies": {
-    "tutors-reader-lib": "0.0.7"
+    "tutors-reader-lib": "0.0.8"
   }
 }

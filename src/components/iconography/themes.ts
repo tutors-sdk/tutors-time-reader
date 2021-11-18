@@ -2,7 +2,7 @@ import { FluentIconLib } from "./support/fluent-icons";
 import { currentCourse } from "../../stores";
 import { HeroIconLib } from "./support/hero-icons";
 import { HalloweenIconLib } from "./support/halloween-icons";
-import type { IconType } from "tutors-reader-lib/src/course/icon-types";
+import type { IconType } from "tutors-reader-lib/src/types/icon-types";
 
 let StandardIconLib = FluentIconLib;
 

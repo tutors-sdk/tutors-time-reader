@@ -13,6 +13,8 @@
   import { setIconLib, themeIcons } from "./components/iconography/themes";
   import { getKeys } from "./environment";
   import firebase from "firebase";
+  import LoggedinStudentCard from "./components/cards/LoggedinStudentCard.svelte";
+  import ClockCard from "./components/cards/ClockCard.svelte";
 
   setContext("cache", new CourseService());
 
@@ -59,3 +61,4 @@
   <MainNavigator />
   <Router {routes} />
 </div>
+
