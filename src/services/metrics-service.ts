@@ -2,8 +2,8 @@ import type { Course } from "tutors-reader-lib/src/course/course";
 import firebase from "firebase/app";
 import "firebase/database";
 import type { Lo, Student } from "tutors-reader-lib/src/course/lo";
-import type { DayMeasure, Metric, MetricDelete, MetricUpdate, User, UserMetric } from "tutors-reader-lib/src/metrics/metrics-types";
-import { decrypt } from "tutors-reader-lib/src/utils/auth-utils";
+import type { MetricDelete, MetricUpdate, User, UserMetric } from "tutors-reader-lib/src/metrics/metrics-types";
+import { fetchUserById, fetchAllUsers} from "tutors-reader-lib/src/metrics/metrics-utils";
 import type { Topic } from "tutors-reader-lib/src/course/topic";
 
 export class MetricsService {
@@ -85,126 +85,12 @@ export class MetricsService {
     }
   }
 
-  expandGenericMetrics(id: string, fbData): any {
-    let metric = {
-      id: "",
-      metrics: [],
-    };
-    metric.id = id;
-    Object.entries(fbData).forEach(([key, value]) => {
-      if (typeof value === "object") {
-        metric.metrics.push(this.expandGenericMetrics(key, value));
-      } else {
-        metric[key] = value;
-      }
-    });
-    return metric;
-  }
-
-  findInMetric(title: string, metric: Metric) {
-    if (title === metric.title) {
-      return metric;
-    } else if (metric.metrics.length > 0) {
-      return this.findInMetrics(title, metric.metrics);
-    } else {
-      return null;
-    }
-  }
-
-  findInMetrics(title: string, metrics: Metric[]): Metric {
-    let result: Metric = null;
-    for (let metric of metrics) {
-      if (metric.id === "ab" || metric.id === "alk" || metric.id === "ideo") {
-        // console.log("ignoring spurious data"); as result of bug in types
-        // since fixed, but bad data in some user dbs.
-      } else {
-        result = this.findInMetric(title, metric);
-        if (result != null) {
-          return result;
-        }
-      }
-    }
-    return result;
-  }
-
-  findInUser(title: string, metric: UserMetric) {
-    return this.findInMetrics(title, metric.metrics);
-  }
-
-  populateLabUsage(user: UserMetric, allLabs: Lo[]) {
-    user.labActivity = [];
-    for (let lab of allLabs) {
-      const labActivity = this.findInUser(lab.title, user);
-      user.labActivity.push(labActivity);
-    }
-  }
-
-  populateCalendar(user: UserMetric) {
-    user.calendarActivity = [];
-    const calendar = user.metrics.find((e) => e.id === "calendar");
-    if (calendar) {
-      for (const [key, value] of Object.entries(calendar)) {
-        if (key.startsWith("20")) {
-          const dayMeasure: DayMeasure = {
-            date: key,
-            dateObj: Date.parse(key),
-            metric: value,
-          };
-          user.calendarActivity.push(dayMeasure);
-        }
-      }
-    }
-  }
-
   async fetchUserById(userId: string) {
-    const userEmail = decrypt(userId);
-    const userEmailSanitised = userEmail.replace(/[`#$.\[\]\/]/gi, "*");
-    const snapshot = await firebase.database().ref(`${this.courseBase}/users/${userEmailSanitised}`).once("value");
-    const user = this.expandGenericMetrics("root", snapshot.val());
-    this.populateCalendar(user);
-    if (this.allLabs) {
-      this.populateLabUsage(user, this.allLabs);
-    }
-    return user;
+    return await fetchUserById(this.course.url, userId, this.allLabs)
   }
 
   async fetchAllUsers() {
-    const users = new Map<string, UserMetric>();
-    const that = this;
-    const snapshot = await firebase.database().ref(`${this.courseBase}`).once("value");
-    const genericMetrics = this.expandGenericMetrics("root", snapshot.val());
-
-    const usage = genericMetrics.metrics[0];
-    for (let userMetric of genericMetrics.metrics[1].metrics) {
-      if (userMetric.nickname) {
-        const user = {
-          userId: userMetric.id,
-          email: userMetric.email,
-          name: userMetric.name,
-          picture: userMetric.picture,
-          nickname: userMetric.nickname,
-          onlineStatus: userMetric.onlineStatus,
-          id: "home",
-          title: userMetric.title,
-          count: userMetric.count,
-          last: userMetric.last,
-          duration: userMetric.duration,
-          metrics: userMetric.metrics,
-          labActivity: [],
-          calendarActivity: [],
-        };
-        if (user.onlineStatus == undefined) {
-          user.onlineStatus = "online";
-        }
-        this.populateCalendar(user);
-        if (this.allLabs) {
-          this.populateLabUsage(user, this.allLabs);
-        }
-        users.set(user.nickname, user);
-      }
-    }
-    this.users = users;
-    return users;
+    return await fetchAllUsers(this.course.url, this.allLabs);
   }
 
   filterUsers(users: Map<string, UserMetric>, students: Student[]) {
@@ -235,7 +121,7 @@ export class MetricsService {
 
   async subscribeToAllUsers() {
     try {
-      await this.fetchAllUsers();
+      this.users = await fetchAllUsers(this.course.url, this.allLabs);
       this.canUpdate = false;
       const func = () => {
         this.canUpdate = true;

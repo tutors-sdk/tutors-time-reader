@@ -20,11 +20,11 @@
 
 {#if user}
   <div transition:cardTransition class="tutorscard w-32 h-32 border-info">
-    <div class="card-title text-base-content text-xs"> {user.name}</div>
+    <div class="card-title text-base-content text-xs -mb-1"> {user.name}</div>
     <figure class="flex justify-center">
-      <img loading="lazy" class="object-scale-down p-1 h-16" src="{user.picture}" alt="{user.nickname}">
+      <img loading="lazy" class="object-scale-down p-1 h-20" src="{user.picture}" alt="{user.nickname}">
     </figure>
-    <div class="text-xs  flex text-base-content ">
+    <div class="text-xs flex text-base-content  -mb-2">
       Appear Offline &nbsp <input type="checkbox" bind:checked={status} on:click={handleClick}>
     </div>
   </div>

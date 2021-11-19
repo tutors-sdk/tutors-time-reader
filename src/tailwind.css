@@ -7,7 +7,7 @@
         @apply mx-auto px-3 antialiased bg-base-100 min-h-screen w-full 2xl:w-11/12
     }
     .navbar {
-        @apply shadow-lg bg-neutral text-neutral-content rounded-box mb-2 p-4 justify-center
+        @apply shadow-lg bg-neutral text-neutral-content rounded-box mb-2 p-1 justify-center
     }
     .header-container {
         @apply mb-2 pt-4 md:top-0 md:z-40 sticky
