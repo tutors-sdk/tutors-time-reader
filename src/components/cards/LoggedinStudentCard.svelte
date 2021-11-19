@@ -9,7 +9,7 @@
   const metricsService = getContext("metrics");
 
   function handleClick() {
-    // analytics.setOnlineStatus($currentCourse, status);
+    metricsService.setOnlineStatus(user, status);
   }
 
   currentUser.subscribe(async course => {

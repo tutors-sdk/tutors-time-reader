@@ -3,8 +3,9 @@ import firebase from "firebase/app";
 import "firebase/database";
 import type { Lo, Student } from "tutors-reader-lib/src/course/lo";
 import type { MetricDelete, MetricUpdate, User, UserMetric } from "tutors-reader-lib/src/metrics/metrics-types";
-import { fetchUserById, fetchAllUsers} from "tutors-reader-lib/src/metrics/metrics-utils";
+import { fetchAllUsers, fetchUserById } from "tutors-reader-lib/src/metrics/metrics-utils";
 import type { Topic } from "tutors-reader-lib/src/course/topic";
+import { updateStr } from "tutors-reader-lib/src/utils/firebase-utils";
 
 export class MetricsService {
   course: Course;
@@ -86,7 +87,7 @@ export class MetricsService {
   }
 
   async fetchUserById(userId: string) {
-    return await fetchUserById(this.course.url, userId, this.allLabs)
+    return await fetchUserById(this.course.url, userId, this.allLabs);
   }
 
   async fetchAllUsers() {
@@ -138,6 +139,16 @@ export class MetricsService {
     }
   }
 
+  setOnlineStatus(user: User, status: boolean) {
+    const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
+    const firebaseEmailRoot = `${this.courseBase}/users/${userEmailSanitised}`;
+    if (status) {
+      updateStr(`${firebaseEmailRoot}/onlineStatus`, "online");
+    } else {
+      updateStr(`${firebaseEmailRoot}/onlineStatus`, "offline");
+    }
+  }
+
   // stopService() {
   //   this.users.forEach((user) => {
   //     const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
@@ -151,7 +162,7 @@ export class MetricsService {
     firebase
       .database()
       .ref(`${this.courseBase}/users/${email}/onlineStatus`)
-      .on("value", function (snapshot) {
+      .on("value", function(snapshot) {
         that.userOnlineStatusChange(user, snapshot.val());
       });
   }
@@ -164,7 +175,7 @@ export class MetricsService {
       firebase
         .database()
         .ref(route)
-        .on("value", function (snapshot) {
+        .on("value", function(snapshot) {
           that.metricChange(user, null, lab);
         });
     });
@@ -179,7 +190,7 @@ export class MetricsService {
       firebase
         .database()
         .ref(route)
-        .on("value", function (snapshot) {
+        .on("value", function(snapshot) {
           const datum = snapshot.val();
           if (datum && datum.title) {
             that.metricChange(user, topic, null);
