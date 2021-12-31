@@ -12,10 +12,10 @@
   import { CourseService } from "./services/course-service";
   import { setIconLib, themeIcons } from "./components/iconography/themes";
   import { getKeys } from "./environment";
-  import firebase from "firebase";
-  import LoggedinStudentCard from "./components/cards/LoggedinStudentCard.svelte";
-  import ClockCard from "./components/cards/ClockCard.svelte";
   import { MetricsService } from "./services/metrics-service";
+
+  import { initializeApp } from 'firebase/app';
+  import AllCourses from "./pages/AllCourses.svelte";
 
   setContext("cache", new CourseService());
   setContext("metrics", new MetricsService());
@@ -26,7 +26,7 @@
   onMount(async () => {
     applyInitialTheme();
     if (getKeys().firebase.apiKey !== "XXX") {
-      if (!firebase.apps.length) firebase.initializeApp(getKeys().firebase);
+      initializeApp(getKeys().firebase);
     }
   });
 
@@ -37,6 +37,7 @@
     "/logout": Logout,
     "/time/*": Time,
     "/live/*": Live,
+    "/all/": AllCourses,
     "*": NotFound
   };
 

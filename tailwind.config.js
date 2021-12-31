@@ -1,15 +1,11 @@
 module.exports = {
-  darkMode: "class",
-  purge: {
-    content: [
-      "./src/**/*.{svelte,js,ts}",
-    ],
-    options: {
-      safelist: [
-        /data-theme$/, /info$/, /success$/, /warning$/, /error$/, /blue$/, /font$/
-      ]
-    },
-  },
+  mode: "jit",
+  content: [
+    "./src/**/*.{svelte,js,ts}"
+  ],
+  safelist: [{
+    pattern: /border|text/
+  }],
 
   plugins: [require("@tailwindcss/typography"), require("@tailwindcss/line-clamp"), require('daisyui')],
 

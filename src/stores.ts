@@ -16,3 +16,4 @@ export const currentUser = writable(null);
 export const studentsOnline = writable(0);
 export const live = writable(false);
 export const layout = writable("");
+export const portfolio = writable(false);

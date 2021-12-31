@@ -1,6 +1,5 @@
 import type { Course } from "tutors-reader-lib/src/course/course";
-import firebase from "firebase/app";
-import "firebase/database";
+import { getDatabase, off, onValue, ref } from "firebase/database";
 import type { Lo, Student } from "tutors-reader-lib/src/course/lo";
 import type { MetricDelete, MetricUpdate, User, UserMetric } from "tutors-reader-lib/src/metrics/metrics-types";
 import { fetchAllUsers, fetchUserById } from "tutors-reader-lib/src/metrics/metrics-utils";
@@ -149,22 +148,21 @@ export class MetricsService {
     }
   }
 
-  // stopService() {
-  //   this.users.forEach((user) => {
-  //     const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
-  //     this.unsubscribeToUserLabs(user, userEmailSanitised);
-  //     this.unsubscribeToUserTopics(user, userEmailSanitised);
-  //   });
-  // }
+  stopService() {
+    this.users.forEach((user) => {
+      const userEmailSanitised = user.email.replace(/[`#$.\[\]\/]/gi, "*");
+      this.unsubscribeToUserLabs(user, userEmailSanitised);
+      this.unsubscribeToUserTopics(user, userEmailSanitised);
+    });
+  }
 
   subscribeToUserStatus(user: User, email: string) {
     const that = this;
-    firebase
-      .database()
-      .ref(`${this.courseBase}/users/${email}/onlineStatus`)
-      .on("value", function(snapshot) {
-        that.userOnlineStatusChange(user, snapshot.val());
-      });
+    const db = getDatabase();
+    const statustRef = ref(db, `${this.courseBase}/users/${email}/onlineStatus`);
+    onValue(statustRef, (snapshot) => {
+      that.userOnlineStatusChange(user, snapshot.val());
+    });
   }
 
   subscribeToUserLabs(user: User, email: string) {
@@ -172,12 +170,11 @@ export class MetricsService {
     this.allLabs.forEach((lab) => {
       const labRoute = lab.route.split("topic");
       const route = `${this.courseBase}/users/${email}/topic${labRoute[1]}`;
-      firebase
-        .database()
-        .ref(route)
-        .on("value", function(snapshot) {
-          that.metricChange(user, null, lab);
-        });
+      const db = getDatabase();
+      const labRef = ref(db, route);
+      onValue(labRef, (snapshot) => {
+        that.metricChange(user, null, lab);
+      });
     });
   }
 
@@ -187,15 +184,14 @@ export class MetricsService {
 
     topics.forEach((topic) => {
       const route = `${this.courseBase}/users/${email}/${topic.lo.id}`;
-      firebase
-        .database()
-        .ref(route)
-        .on("value", function(snapshot) {
-          const datum = snapshot.val();
-          if (datum && datum.title) {
-            that.metricChange(user, topic, null);
-          }
-        });
+      const db = getDatabase();
+      const topicRef = ref(db, route);
+      onValue(topicRef, (snapshot) => {
+        const datum = snapshot.val();
+        if (datum && datum.title) {
+          that.metricChange(user, topic, null);
+        }
+      });
     });
   }
 
@@ -203,7 +199,9 @@ export class MetricsService {
     this.allLabs.forEach((lab) => {
       const labRoute = lab.route.split("topic");
       const route = `${this.courseBase}/users/${email}/topic${labRoute[1]}`;
-      firebase.database().ref(route).off();
+      const db = getDatabase();
+      const labRoutesRef = ref(db, route);
+      off(labRoutesRef);
     });
   }
 
@@ -211,7 +209,9 @@ export class MetricsService {
     const topics = this.course.topics;
     topics.forEach((topic) => {
       const route = `${this.courseBase}/users/${email}/${topic.lo.id}`;
-      firebase.database().ref(route).off();
+      const db = getDatabase();
+      const topicRoutesRef = ref(db, route);
+      off(topicRoutesRef);
     });
   }
 }

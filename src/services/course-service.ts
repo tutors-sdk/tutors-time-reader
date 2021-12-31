@@ -28,7 +28,6 @@ export class CourseService {
           this.courseUrl = "";
           this.course = null;
           this.loadError = true;
-          console.log(e);
         }
       }
     }
