@@ -17,7 +17,7 @@
 
 {#if $currentLo}
   <div class="flex-1">
-    <Image {lo} miniImage={true} />
+<!--    <Image {lo} miniImage={true} />-->
     <div class="navbar-title">
       <p class="text-lg font-bold">{$currentLo.title}</p>
       {#if $currentLo.title != $currentCourse.lo.title}
@@ -25,11 +25,6 @@
       {:else}
         <p class="text-sm font-bold">{$currentCourse.lo.properties.credits}</p>
       {/if}
-    </div>
-  </div>
-  <div class="navbar-calendar">
-    <div class="navbar-calendar">
-      <CalendarButton />
     </div>
   </div>
 {/if}
