@@ -56,6 +56,15 @@
     students = [...students];
   }
 
+  function compareStudents(student1:StudentMetric, student2:StudentMetric) {
+    if (!student1.lab) {
+      return -1;
+    }
+    if (student1.lab && student2.lab) {
+      return student1.lab.title.localeCompare(student2.lab.title);
+    }
+  }
+
   function metricUpdate(user: User, topic: Topic, lab: Lo, time: number) {
     if (user.onlineStatus === "offline") return;
     let student = students.find(student => student.nickname === user.nickname);
@@ -77,7 +86,9 @@
     if (lab) {
       student.lab = lab;
     }
+    students.sort(compareStudents);
     students = [...students];
+
     studentsOnline.set(metricsService.getLiveCount());
   }
 
