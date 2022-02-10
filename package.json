@@ -13,31 +13,31 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@iconify/svelte": "^2.1.0",
+    "@iconify/svelte": "^2.1.2",
     "@iconify/types": "^1.0.12",
-    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.33",
-    "@tailwindcss/line-clamp": "^0.3.0",
-    "@tailwindcss/typography": "^0.5.0",
-    "ag-grid-community": "^26.2.1",
-    "ag-grid-enterprise": "^26.2.1",
-    "autoprefixer": "^10.4.1",
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.37",
+    "@tailwindcss/line-clamp": "^0.3.1",
+    "@tailwindcss/typography": "^0.5.1",
+    "ag-grid-community": "^27.0.0",
+    "ag-grid-enterprise": "^27.0.0",
+    "autoprefixer": "^10.4.2",
     "crypto-es": "^1.2.7",
-    "daisyui": "^1.20.1",
+    "daisyui": "^1.25.4",
     "file-saver": "^2.0.5",
-    "firebase": "^9.6.1",
+    "firebase": "^9.6.6",
     "path-browserify": "^1.0.1",
-    "postcss": "^8.4.5",
-    "svelte": "^3.44.3",
+    "postcss": "^8.4.6",
+    "svelte": "^3.46.4",
     "svelte-loading-spinners": "^0.1.7",
-    "svelte-preprocess": "^4.10.1",
+    "svelte-preprocess": "^4.10.3",
     "svelte-spa-router": "^3.2.0",
     "svelte-tabs": "^1.1.0",
     "svelte-transitions-fade-scale": "^1.0.0",
-    "tailwindcss": "^3.0.8",
-    "typescript": "^4.5.4",
-    "vite": "^2.7.10"
+    "tailwindcss": "^3.0.20",
+    "typescript": "^4.5.5",
+    "vite": "^2.8.0"
   },
   "dependencies": {
-    "tutors-reader-lib": "0.0.19"
+    "tutors-reader-lib": "0.1.1"
   }
 }
