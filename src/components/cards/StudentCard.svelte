@@ -1,8 +1,33 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
   import type { StudentMetric } from "tutors-reader-lib/src/metrics/metrics-types";
-
+  import Image from "./Image.svelte";
+  import { getIcon } from "../iconography/themes";
+  import {layout} from "../../stores";
   export let student: StudentMetric;
+  import { cardTransition } from "../animations";
+  let headingText = "";
+  let text = "";
+  let cardWidths = "";
+  let cardType = "tutorscard"
+  let cardHeader ="tutorscard-header"
+
+  const unsubscribe = layout.subscribe(layout => {
+    if (layout === "compacted") {
+      headingText = "text-xs font-medium";
+      text = "text-xs";
+      cardWidths = "w-32 h-56";
+      cardType = "tutorscard-compact"
+      cardHeader ="tutorscard-header-compact"
+    } else {
+      headingText = "text-md font-normal";
+      text = "text-sm";
+      cardWidths = "w-60";
+      cardType = "tutorscard";
+      cardHeader ="tutorscard-header";
+    }
+  });
+
 </script>
 
 <style>
@@ -13,21 +38,21 @@
   }
 </style>
 
-<div
-  class="font-light font-sm card m-4 block bg-white border dark:hover:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden dark:bg-gray-900 dark:text-white"
-  in:fade={{ duration: 800 }}>
-  <div class="text-center p-1"> {student.name} </div>
+<!--<div-->
+<!--  class="font-light font-sm card m-4 block bg-white border dark:hover:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden dark:bg-gray-900 dark:text-white"-->
+<div transition:cardTransition class="{cardType} {cardWidths} border-{getIcon('talk').colour}">
+  <div class="text-center p-1 {headingText}"> {student.name} </div>
   <hr>
   <div class="grid grid-cols-2 gap-1">
     <div>
       <img loading="lazy" class="object-scale-down  h-24" src="{student.img}" alt="{student.nickname}">
     </div>
     <div>
-      <img loading="lazy" class="object-scale-down  h-24" src="{student.topic.lo.img}" alt="{student.nickname}">
+      <Image lo={student.topic.lo}/>
     </div>
     <div>
       {#if student.lab }
-        <img loading="lazy" class="object-scale-down  h-24" src="{student.lab.img}" alt="{student.nickname}">
+        <Image lo={student.lab}/>
       {/if}
     </div>
     <div class="text-xs text-center">

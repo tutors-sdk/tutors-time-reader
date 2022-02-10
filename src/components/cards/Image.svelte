@@ -55,7 +55,7 @@
 </script>
 
 {#if lo.icon}
-  <Iconify icon="{lo.icon.type}" color="{colourPrefix}{lo.icon.color}" height="{iconHeight}"></Iconify>
+  <Iconify icon="{lo.icon.type}" color="{colourPrefix}{lo.icon.color}" height="h24"></Iconify>
 {:else}
-  <img loading="lazy" class="tutorscard-image {imageHeight}" src="{lo.img}" alt="{lo.title}">
+  <img loading="lazy" class="object-scale-down  h-24" src="{lo.img}" alt="{lo.title}">
 {/if}
