@@ -6,6 +6,7 @@
   import { fly } from "svelte/transition";
   import ClockCard from "../cards/ClockCard.svelte";
   import LoggedinStudentCard from "../cards/LoggedinStudentCard.svelte";
+  import Compact from "./support/Compact.svelte";
 </script>
 
 {#if $currentCourse}
@@ -14,6 +15,7 @@
       <LoggedinStudentCard/>
       <TitleCard />
       <TutorsIcon />
+      <Compact />
       <DarkMode />
       <div class="h-28">
         <ClockCard/>

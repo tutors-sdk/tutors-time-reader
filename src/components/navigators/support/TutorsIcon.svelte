@@ -2,7 +2,7 @@
   export let version = "4.4.3";
 </script>
 <div class="tooltip" data-tip="Tutors Reader {version}">
-  <a target="_blank" href="https://tutors.dev">
+  <a target="_blank" href="https://docs.tutors.dev">
     <div class="navbar-icon">
       <!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In  -->
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
