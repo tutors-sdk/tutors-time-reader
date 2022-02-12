@@ -1,10 +1,10 @@
-import type { Course } from "tutors-reader-lib/src/course/course";
+import type { Course } from "../reader-lib/course/course";
 import { getDatabase, off, onValue, ref } from "firebase/database";
-import type { Lo, Student } from "tutors-reader-lib/src/course/lo";
-import type { MetricDelete, MetricUpdate, User, UserMetric } from "tutors-reader-lib/src/metrics/metrics-types";
-import { fetchAllUsers, fetchUserById } from "tutors-reader-lib/src/metrics/metrics-utils";
-import type { Topic } from "tutors-reader-lib/src/course/topic";
-import { updateStr } from "tutors-reader-lib/src/utils/firebase-utils";
+import type { Lo, Student } from "../reader-lib/course/lo";
+import type { MetricDelete, MetricUpdate, User, UserMetric } from "../reader-lib/metrics/metrics-types";
+import { fetchAllUsers, fetchUserById } from "../reader-lib/metrics/metrics-utils";
+import type { Topic } from "../reader-lib/course/topic";
+import { updateStr } from "../reader-lib/utils/firebase-utils";
 
 export class MetricsService {
   course: Course;

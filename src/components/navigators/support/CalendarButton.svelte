@@ -1,7 +1,7 @@
 <script lang="ts">
   import CalendarCard from "../../cards/CalendarCard.svelte";
   import { currentCourse } from "../../../stores";
-  import { Course } from "tutors-reader-lib/src/course/course";
+  import { Course } from "../../../reader-lib/course/course";
 
   let bgColour = "bg-base-100";
   let course: Course;

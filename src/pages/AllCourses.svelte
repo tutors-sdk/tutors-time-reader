@@ -2,7 +2,7 @@
   import { getContext } from "svelte";
   import type { CourseService } from "../services/course-service";
   import CardDeck from "../components/cards/CardDeck.svelte";
-  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import type { Lo } from "../reader-lib/course/lo";
   import { currentLo,portfolio } from "../stores";
   import { Wave } from "svelte-loading-spinners";
   import { deleteCourseFromList, fetchAllCourseList } from "../services/course-utils";

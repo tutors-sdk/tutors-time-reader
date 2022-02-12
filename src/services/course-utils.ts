@@ -19,6 +19,4 @@ export async function fetchAllCourseList() {
 export function deleteCourseFromList(url: string) {
   // let ref = firebase.database().ref(`all-course-access/${url}`);
   // ref.remove();
-  // console.log(`deleting: ${url} as invalid`);
 }
-
