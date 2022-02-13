@@ -1,11 +1,11 @@
 <script lang="ts">
   import { getContext } from "svelte";
-  import type { CourseService } from "../services/course-service";
+  import type { CourseService } from "../reader-lib/services/course-service";
   import CardDeck from "../components/cards/CardDeck.svelte";
-  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import type { Lo } from "../reader-lib/types/lo-types";
   import { currentLo,portfolio } from "../stores";
   import { Wave } from "svelte-loading-spinners";
-  import { deleteCourseFromList, fetchAllCourseList } from "../services/course-utils";
+  import { fetchAllCourseList } from "../reader-lib/utils/firebase-utils";
 
   let los: Lo[] = [];
 
@@ -33,7 +33,7 @@
         los.push(courseLo.lo);
         tickerTape = courseLo.lo.title;
       } else {
-        deleteCourseFromList(`${courses[i].url}`);
+        // deleteCourseFromList(`${courses[i].url}`);
       }
     }
     refresh = !refresh;

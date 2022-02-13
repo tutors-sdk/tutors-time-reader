@@ -3,7 +3,7 @@
   import { getContext, onMount } from "svelte";
   import { Grid } from "ag-grid-community";
   import { options } from "../../components/sheets/lab-sheet";
-  import { CourseService } from "../../services/course-service";
+  import { CourseService } from "../../reader-lib/services/course-service";
   import Icon from "../../components/iconography/Icon.svelte";
 
   export let id;
@@ -15,7 +15,7 @@
 
   const cache: CourseService = getContext("cache");
   const metricsService = getContext("metrics");
-  
+
   onMount(async () => {
     timeGrid = new Grid(time, { ...options });
     const user = await metricsService.fetchUserById(id);
