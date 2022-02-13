@@ -1,6 +1,6 @@
 import { FluentIconLib } from "./fluent-icons";
 import { currentCourse } from "../../stores";
-import type { IconType } from "tutors-reader-lib/src/icons/icon-types";
+import type { IconType } from "../../reader-lib/types/icon-types";
 
 let StandardIconLib = FluentIconLib;
 
