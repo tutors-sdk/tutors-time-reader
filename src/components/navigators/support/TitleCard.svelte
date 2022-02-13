@@ -1,8 +1,6 @@
 <script lang="ts">
   import { currentCourse, currentLo } from "../../../stores";
-  import Image from "../../cards/Image.svelte";
   import type { Lo } from "../../../reader-lib/types/lo-types";
-  import CalendarButton from "./CalendarButton.svelte";
 
   let lo: Lo;
   const unsubscribe = currentLo.subscribe(current => {
@@ -17,7 +15,6 @@
 
 {#if $currentLo}
   <div class="flex-1">
-<!--    <Image {lo} miniImage={true} />-->
     <div class="navbar-title">
       <p class="text-lg font-bold">{$currentLo.title}</p>
       {#if $currentLo.title != $currentCourse.lo.title}

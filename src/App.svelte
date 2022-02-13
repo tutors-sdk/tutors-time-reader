@@ -3,12 +3,10 @@
   import { onMount, setContext } from "svelte";
   import Router from "svelte-spa-router";
   import Blank from "./pages/support/Blank.svelte";
-  import Unauthorised from "./pages/support/Unauthorised.svelte";
   import Time from "./pages/Time.svelte";
   import Live from "./pages/Live.svelte";
   import NotFound from "./pages/support/NotFound.svelte";
   import MainNavigator from "./components/navigators/MainNavigator.svelte";
-  import Logout from "./pages/support/Logout.svelte";
   import { CourseService } from "./reader-lib/services/course-service";
   import { setIconLib, themeIcons } from "./components/iconography/themes";
   import { getKeys } from "./environment";
@@ -32,9 +30,6 @@
 
   let routes = {
     "/": Blank,
-    "/unauthorised": Unauthorised,
-    "/authorize/": Blank,
-    "/logout": Logout,
     "/time/*": Time,
     "/live/*": Live,
     "/all/": AllCourses,

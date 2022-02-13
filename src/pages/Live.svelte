@@ -1,10 +1,10 @@
 <script lang="ts">
   import { getContext, onDestroy } from "svelte";
-  import type { CourseService } from "../services/course-service";
+  import type { CourseService } from "../reader-lib/services/course-service";
   import { currentLo, currentUser, live, studentsOnline } from "../stores";
-  import type { StudentMetric, User } from "../reader-lib/metrics/metrics-types";
+  import type { StudentMetric, User } from "../reader-lib/types/metrics-types";
   import { Topic } from "../reader-lib/course/topic";
-  import type { Lo } from "../reader-lib/course/lo";
+  import type { Lo } from "../reader-lib/types/lo-types";
   import StudentCard from "../components/cards/StudentCard.svelte";
   import { querystring } from "svelte-spa-router";
 

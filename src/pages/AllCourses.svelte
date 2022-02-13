@@ -5,7 +5,7 @@
   import type { Lo } from "../reader-lib/types/lo-types";
   import { currentLo,portfolio } from "../stores";
   import { Wave } from "svelte-loading-spinners";
-  import { deleteCourseFromList, fetchAllCourseList } from "../reader-lib/course/course";
+  import { fetchAllCourseList } from "../reader-lib/utils/firebase-utils";
 
   let los: Lo[] = [];
 
@@ -33,7 +33,7 @@
         los.push(courseLo.lo);
         tickerTape = courseLo.lo.title;
       } else {
-        deleteCourseFromList(`${courses[i].url}`);
+        // deleteCourseFromList(`${courses[i].url}`);
       }
     }
     refresh = !refresh;

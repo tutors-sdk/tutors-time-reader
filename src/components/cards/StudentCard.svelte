@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
   import type { StudentMetric } from "../../reader-lib/types/metrics-types";
   import Image from "./Image.svelte";
   import { getIcon } from "../iconography/themes";
@@ -38,8 +37,6 @@
   }
 </style>
 
-<!--<div-->
-<!--  class="font-light font-sm card m-4 block bg-white border dark:hover:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden dark:bg-gray-900 dark:text-white"-->
 <div transition:cardTransition class="{cardType} {cardWidths} border-{getIcon('talk').colour}">
   <div class="text-center p-1 {headingText}"> {student.name} </div>
   <hr>

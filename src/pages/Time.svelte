@@ -6,7 +6,7 @@
   import CalendarTime from "./support/CalendarTime.svelte";
   import InstructorCalendarTime from "./support/InstructorCalendarTime.svelte";
   import type { Course } from "../reader-lib/course/course";
-  import type { CourseService } from "../services/course-service";
+  import type { CourseService } from "../reader-lib/services/course-service";
   import { currentLo, currentUser } from "../stores";
   // @ts-ignore
   import { Tab, TabList, TabPanel, Tabs } from "svelte-tabs";

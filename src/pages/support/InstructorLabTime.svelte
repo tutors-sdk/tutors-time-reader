@@ -4,7 +4,7 @@
   import { Grid } from "ag-grid-community";
   import "ag-grid-enterprise";
   import { options } from "../../components/sheets/lab-sheet";
-  import { CourseService } from "../../services/course-service";
+  import { CourseService } from "../../reader-lib/services/course-service";
   import Icon from "../../components/iconography/Icon.svelte";
 
   let time;
