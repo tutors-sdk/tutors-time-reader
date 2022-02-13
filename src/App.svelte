@@ -9,10 +9,10 @@
   import NotFound from "./pages/support/NotFound.svelte";
   import MainNavigator from "./components/navigators/MainNavigator.svelte";
   import Logout from "./pages/support/Logout.svelte";
-  import { CourseService } from "./services/course-service";
+  import { CourseService } from "./reader-lib/services/course-service";
   import { setIconLib, themeIcons } from "./components/iconography/themes";
   import { getKeys } from "./environment";
-  import { MetricsService } from "./services/metrics-service";
+  import { MetricsService } from "./reader-lib/services/metrics-service";
 
   import { initializeApp } from 'firebase/app';
   import AllCourses from "./pages/AllCourses.svelte";

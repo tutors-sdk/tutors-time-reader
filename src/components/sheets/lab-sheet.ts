@@ -1,6 +1,6 @@
 import type { ICellRendererParams } from "ag-grid-community";
-import type { Lo } from "../../reader-lib/course/lo";
-import type { UserMetric } from "../../reader-lib/metrics/metrics-types";
+import type { Lo } from "../../reader-lib/types/lo-types";
+import type { UserMetric } from "../../reader-lib/types/metrics-types";
 
 export let options = {
   animateRows: true,

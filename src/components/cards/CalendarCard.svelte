@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { CourseService } from "../../services/course-service";
+  import { CourseService } from "../../reader-lib/services/course-service";
   import { getContext } from "svelte";
 
   const cache: CourseService = getContext("cache");

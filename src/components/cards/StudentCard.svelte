@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import type { StudentMetric } from "tutors-reader-lib/src/metrics/metrics-types";
+  import type { StudentMetric } from "../../reader-lib/types/metrics-types";
   import Image from "./Image.svelte";
   import { getIcon } from "../iconography/themes";
   import {layout} from "../../stores";

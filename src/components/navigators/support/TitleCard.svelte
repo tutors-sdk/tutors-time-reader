@@ -1,7 +1,7 @@
 <script lang="ts">
   import { currentCourse, currentLo } from "../../../stores";
   import Image from "../../cards/Image.svelte";
-  import type { Lo } from "tutors-reader-lib/src/course/lo";
+  import type { Lo } from "../../../reader-lib/types/lo-types";
   import CalendarButton from "./CalendarButton.svelte";
 
   let lo: Lo;
