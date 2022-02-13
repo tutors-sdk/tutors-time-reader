@@ -3,7 +3,7 @@
   import type { CourseService } from "../reader-lib/services/course-service";
   import { currentLo, currentUser, live, studentsOnline } from "../stores";
   import type { StudentMetric, User } from "../reader-lib/types/metrics-types";
-  import { Topic } from "../reader-lib/course/topic";
+  import { Topic } from "../reader-lib/models/topic";
   import type { Lo } from "../reader-lib/types/lo-types";
   import StudentCard from "../components/cards/StudentCard.svelte";
   import { querystring } from "svelte-spa-router";
@@ -93,7 +93,7 @@
   }
 
   function handleClick() {
-    // analytics.setOnlineStatus(course, status);
+    // analytics.setOnlineStatus(models, status);
   }
 </script>
 
