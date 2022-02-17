@@ -21,6 +21,7 @@
     live.set(true);
     course = await cache.fetchCourse(params.wild);
     metricsService.setCourse(course);
+    await metricsService.subscribeToAllUsers();
     // noinspection TypeScriptValidateTypes
     currentLo.set({
       title: `Tutors Live: ${course.lo.title}`,
@@ -39,7 +40,7 @@
     const user = await metricsService.fetchUserById(id);
     currentUser.set(user);
     status = user.onlineStatus === "offline";
-    await metricsService.subscribeToAllUsers();
+
     return course;
   }
 
