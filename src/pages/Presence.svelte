@@ -85,7 +85,7 @@
 
         <div class="font-sm font-light text-l text-left p-2">
           <p class="p-2">
-            In order to participate in shared presences, you will need to also share your presence.
+            In order to see who is online now, you will need to also share your presence.
             Check the "Share Presence" box on your course page.
           </p>
         </div>
