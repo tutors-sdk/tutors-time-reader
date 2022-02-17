@@ -27,7 +27,7 @@
 
   function refreshStatus(user: User) {
     if (user.nickname === thisUserNickName) {
-      if (!user.onlineStatus) user.onlineStatus = "online"
+      if (!user.hasOwnProperty("onlineStatus")) user.onlineStatus = "online";
       show = user.onlineStatus === "online";
     }
   }
