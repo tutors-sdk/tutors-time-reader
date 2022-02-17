@@ -14,6 +14,7 @@
 
   import { initializeApp } from 'firebase/app';
   import AllCourses from "./pages/AllCourses.svelte";
+  import Presence from "./pages/Presence.svelte";
 
   setContext("cache", new CourseService());
   setContext("metrics", new MetricsService());
@@ -31,7 +32,8 @@
   let routes = {
     "/": Blank,
     "/time/*": Time,
-    "/live/*": Live,
+    "/oldlive/*": Live,
+    "/live/*": Presence,
     "/all/": AllCourses,
     "*": NotFound
   };
