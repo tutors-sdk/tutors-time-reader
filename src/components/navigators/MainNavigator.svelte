@@ -7,6 +7,7 @@
   import ClockCard from "../cards/ClockCard.svelte";
   import LoggedinStudentCard from "../cards/LoggedinStudentCard.svelte";
   import Compact from "./support/Compact.svelte";
+  import OnlineStudents from "./support/OnlineStudents.svelte";
 </script>
 
 {#if $currentCourse}
@@ -14,6 +15,7 @@
     <div in:fly="{{ y: -100, duration: 1000 }}" out:fly="{{ y: -100, duration: 500 }}" class="navbar">
       <LoggedinStudentCard/>
       <TitleCard />
+      <OnlineStudents/>
       <TutorsIcon />
       <Compact />
       <DarkMode />
